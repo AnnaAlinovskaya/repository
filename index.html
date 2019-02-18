@@ -169,12 +169,27 @@
                   <!-- <a href="#contact" class="btn btn-primary scroll">Сделать заказ</a> -->
                   </div>
                   <div class="col-8 col-md-6 col-lg-4">
-                     <form id="application" action=" application.php" method="GET" name=" application ">
-                         <input name="name" id="applicationName" maxlength="20" placeholder="Введите ваше имя" required />
-                         <input name="email" type="email" id="applicationEmail" maxlength="20" placeholder="Введите ваш E-mail" required />
-                         <input name="telephone" type="Tel" id="applicationTelephone" maxlength="20" placeholder="Введите ваш телефон" required/>
-                         <button class="applicationButton" type="submit" form="application">Получить прайс </button>
-                     </form>
+                     <form id="form1" method="POST">
+                                        <div class="form-row">
+                          <div class="col">
+                          <input type="hidden" name="formData" value="Заголовок формы">
+                            <input type="text" name="name" class="name form-control" placeholder="Представьтесь, пожалуйста">
+                          </div>
+                        </div>
+                          <div class="form-group">
+                              <label for="recipient-mail" class="col-form-label">Ваш email:</label>
+                              <input type="text" name="email" id="recipient-mail" class="email form-control" placeholder="example@mail.ru">
+                          </div>
+                          <div class="form-group">
+                              <label for="recipient-phone" class="col-form-label">Ваш телефон:</label>
+                              <input type="text" name="phone" id="recipient-phone" class="phone form-control" placeholder="+7">
+                          </div>
+                                                 <div class="form-group">
+                              <label for="message-text" class="col-form-label">Сообщение:</label>
+                              <textarea name="message" id="message-text" class="message form-control" placeholder=""></textarea>
+                          </div>
+                         <button type="submit" class="btn btn-primary">Заказать</button>
+                  </form>
                     <!--  <img alt="Image" src="img/pazl.png" class="img-fluid mb-0 box-shadow"> -->
                   </div>
                </div>
@@ -505,6 +520,24 @@
       <script src="js/masonry.min.js" ></script>
       <script src="js/script.js" ></script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbGQXiGt-6UAmOFFdSzYI-byeE7ewBuVM&callback=initializeMap"></script>
+	    <script>
+    $(document).ready(function () {
+        $('form').submit(function () {
+            var formID = $(this).attr('id'); // Получение ID формы
+            var formNm = $('#' + formID);
+            $.ajax({
+                type: 'POST',
+                url: 'feedback.php', // Обработчик формы отправки
+                data: formNm.serialize(),
+                success: function (data) {
+                    // Вывод текста результата отправки в текущей форме
+                    $(formNm).html(data);
+                }
+            });
+            return false;
+        });
+    });
+</script>
       <!-- Google analytics -->
       <!-- End google analytics -->
    </body>
