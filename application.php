@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Создание формы обратной связи</title>
-<meta http-equiv="Refresh" content="4; URL=http://locahost/index.php"> 
+<meta http-equiv="Refresh" content="4; URL=http://index.html/"> 
 </head>
 <body>
 
